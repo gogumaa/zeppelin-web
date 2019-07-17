@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "Apache Zeppelin web written in ReactJS",
   "engines": {
-    "node": ">=8",
-    "npm": ">=3"
+    "node": ">=8.9",
+    "npm": ">=6.6"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
-    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
+    "start": "npm run open:src",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -45,6 +45,7 @@
     "react-router-dom": "5.0.0",
     "redux": "4.0.1",
     "redux-actions": "2.6.5",
+    "redux-observable": "1.1.0",
     "redux-thunk": "2.3.0",
     "rxjs": "6.5.2",
     "styled-components": "4.3.2"
@@ -67,7 +68,7 @@
     "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "browser-sync": "2.26.5",
+    "browser-sync": "2.26.7",
     "chalk": "2.4.2",
     "concurrently": "4.1.0",
     "connect-history-api-fallback": "1.6.0",
