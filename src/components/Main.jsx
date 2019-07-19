@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getNotebooks } from "~/dux/notebooks/actions.js";
+import React from 'react';
+import { connect } from 'react-redux';
+import { getNotebooks } from '~/dux/notebooks/actions.js';
 
 const Main = ({ onBtnClick }) => (
   <>
