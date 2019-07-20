@@ -9,6 +9,7 @@ import historyApiFallback from 'connect-history-api-fallback';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import proxyMiddleware from 'http-proxy-middleware';
 import config from '../webpack.config.dev';
 
 const bundler = webpack(config);
@@ -23,6 +24,7 @@ browserSync({
     baseDir: 'src',
 
     middleware: [
+      proxyMiddleware('/ws/**', { target: 'http://localhost:8080', changeOrigin: true, ws: true }),
       historyApiFallback(),
 
       webpackDevMiddleware(bundler, {

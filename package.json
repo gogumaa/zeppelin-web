@@ -36,6 +36,7 @@
     "connected-react-router": "6.4.0",
     "functional-immutable": "1.0.1",
     "history": "4.9.0",
+    "http-proxy-middleware": "0.19.1",
     "immutable": "4.0.0-rc.12",
     "lodash": "4.17.14",
     "object-assign": "4.1.1",
