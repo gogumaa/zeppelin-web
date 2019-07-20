@@ -5,7 +5,7 @@ import { getNotebooks } from '~/dux/notebooks/actions.js';
 const Main = ({ onBtnClick }) => (
   <>
     <h1>Apache Zeppelin webapp in React</h1>
-    <button onClick={onBtnClick}>Get all</button>
+    <button onClick={onBtnClick}>Trigger action</button>
   </>
 );
 
