@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Notebook = () => (
-  <div>This is notebook page</div>
+  <div>This is notebook, Alo
+  </div>
 );
 
 export default Notebook;
