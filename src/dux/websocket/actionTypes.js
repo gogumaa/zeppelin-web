@@ -1,0 +1,5 @@
+export const INITIALIZE_APP = 'INITIALIZE_APP';
+export const INITIALIZE_WS = 'INITIALIZE_WS';
+export const WS_MESSAGE_RECIEVED = 'WS_MESSAGE_RECIEVED';
+export const WS_CONNECT = 'WS_CONNECT';
+export const WS_PULSE = 'WS_PULSE';

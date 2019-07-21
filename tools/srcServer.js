@@ -9,6 +9,8 @@ import historyApiFallback from 'connect-history-api-fallback';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import proxyMiddleware from 'http-proxy-middleware';
+
 import config from '../webpack.config.dev';
 
 const bundler = webpack(config);
@@ -23,8 +25,19 @@ browserSync({
     baseDir: 'src',
 
     middleware: [
+      proxyMiddleware('/api/security/ticket', {
+        target: 'http://localhost:8080/',
+        changeOrigin: true,
+        ws: true,
+        logLevel: 'debug',
+      }),
+      proxyMiddleware('/ws', {
+        target: 'ws://localhost:8080',
+        changeOrigin: true,
+        ws: true,
+        logLevel: 'debug',
+      }),
       historyApiFallback(),
-
       webpackDevMiddleware(bundler, {
         // Dev middleware can"t access config, so we provide publicPath
         publicPath: config.output.publicPath,
