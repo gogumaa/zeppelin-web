@@ -28,14 +28,11 @@ browserSync({
       proxyMiddleware('/api/security/ticket', {
         target: 'http://localhost:8080/',
         changeOrigin: true,
-        ws: true,
-        logLevel: 'debug',
       }),
       proxyMiddleware('/ws', {
         target: 'ws://localhost:8080',
         changeOrigin: true,
         ws: true,
-        logLevel: 'debug',
       }),
       historyApiFallback(),
       webpackDevMiddleware(bundler, {
