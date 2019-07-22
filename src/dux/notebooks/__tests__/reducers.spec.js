@@ -13,17 +13,17 @@ describe('Dux/Notebooks/Reducers', () => {
 
   it('should set loading on GET_NOTEBOOKS', () => {
     expect(
-      reducer(initialState, { type: GET_NOTEBOOKS }).get('notebooksLoading')
+      reducer(initialState, { type: GET_NOTEBOOKS }).get('notebooksLoading'),
     ).toEqual(true);
   });
   it('should set loading on GET_NOTEBOOKS_FAILURE', () => {
     expect(
-      reducer(initialState, { type: GET_NOTEBOOKS_FAILURE }).get('notebooksLoading')
+      reducer(initialState, { type: GET_NOTEBOOKS_FAILURE }).get('notebooksLoading'),
     ).toEqual(true);
   });
   it('should set loading false on GET_NOTEBOOKS_SUCCESS', () => {
     expect(
-      reducer(initialState, { type: GET_NOTEBOOKS_SUCCESS }).get('notebooksLoading')
+      reducer(initialState, { type: GET_NOTEBOOKS_SUCCESS }).get('notebooksLoading'),
     ).toEqual(false);
   });
 });
