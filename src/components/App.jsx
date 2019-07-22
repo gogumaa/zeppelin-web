@@ -2,29 +2,43 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { initializeApp } from '~/dux/websocket/actions';
 import Main from './Main';
 import Notebook from './Notebook';
 import NotFoundPage from './NotFoundPage';
 
-const App = () => (
-  <>
-    <Switch>
-      <Route exact path="/" component={Main} />
-      {/* < Route path="/notebookRepos" component={} /> */}
-      {/* <Route path="/credential" component={} /> */}
-      {/* <Route path="/helium" component={} /> */}
-      {/* <Route path="/configuration" component={} /> */}
-      {/* <Route path="/interpreter" component={} /> */}
-      <Route path="/notebook/:notebookId" component={Notebook} />
-      <Route component={NotFoundPage} />
-    </Switch>
-    {/* TODO: Render a list of notebooks */}
-  </>
-);
+class App extends React.Component {
+  componentDidMount() {
+    const { initApp } = this.props;
+    initApp();
+  }
+
+  render() {
+    return (
+      <>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          {/* < Route path="/notebookRepos" component={} /> */}
+          {/* <Route path="/credential" component={} /> */}
+          {/* <Route path="/helium" component={} /> */}
+          {/* <Route path="/configuration" component={} /> */}
+          {/* <Route path="/interpreter" component={} /> */}
+          <Route path="/notebook/:notebookId" component={Notebook} />
+          <Route component={NotFoundPage} />
+        </Switch>
+        {/* TODO: Render a list of notebooks */}
+      </>
+    );
+  }
+}
 
 App.propTypes = {
   children: PropTypes.element,
+  initApp: PropTypes.func.isRequired,
 };
 
-export default hot(module)(App);
+export default connect(_ => _, {
+  initApp: initializeApp,
+})(hot(module)(App));
