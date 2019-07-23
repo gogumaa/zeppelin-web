@@ -10,8 +10,9 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import proxyMiddleware from 'http-proxy-middleware';
-
 import config from '../webpack.config.dev';
+
+require('dotenv').config();
 
 const bundler = webpack(config);
 
@@ -26,11 +27,11 @@ browserSync({
 
     middleware: [
       proxyMiddleware('/api/security/ticket', {
-        target: 'http://localhost:8080/',
+        target: process.env.ZEPL_API_PORT,
         changeOrigin: true,
       }),
       proxyMiddleware('/ws', {
-        target: 'ws://localhost:8080',
+        target: process.env.ZEPL_WS_PORT,
         changeOrigin: true,
         ws: true,
       }),
