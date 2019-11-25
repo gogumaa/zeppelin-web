@@ -1,10 +1,14 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createBrowserHistory } from 'history';
-import { logger } from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
+import { Iterable } from 'immutable';
+import * as fi from 'functional-immutable';
+import keys from 'lodash/fp/keys';
+import forEach from 'lodash/fp/forEach';
 
-// "routerMiddleware": the new way of storing route changes with redux middleware since rrV4.
+// 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import rootReducer from '~/dux/rootReducer';
 import rootEpic from '~/dux/rootEpic';
@@ -31,12 +35,27 @@ function configureStoreProd(initialState) {
   return store;
 }
 
+const stateTransformer = (state) => {
+  const newState = {};
+  forEach((idx) => {
+    if (Iterable.isIterable(state[idx])) {
+      newState[idx] = fi.toJS()(state[idx]);
+    } else {
+      newState[idx] = state[idx];
+    }
+  }, keys(state));
+  return newState;
+};
+
 function configureStoreDev(initialState) {
   const epicMiddleware = createEpicMiddleware();
   const reactRouterMiddleware = routerMiddleware(history);
   const middleware = [
     // Add other middleware on this line...
-    logger,
+    createLogger({
+      collapsed: true,
+      stateTransformer,
+    }),
     epicMiddleware,
     // Redux middleware that spits an error on you when you try to
     // mutate your state either inside a dispatch or between dispatches.

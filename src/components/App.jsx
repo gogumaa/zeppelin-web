@@ -5,14 +5,16 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { initializeApp } from '~/dux/websocket/actions';
+import { getNotebooks } from '~/dux/notebooks/actions';
 import Main from './Main';
 import Notebook from './Notebook';
 import NotFoundPage from './NotFoundPage';
 
 class App extends React.Component {
   componentDidMount() {
-    const { initApp } = this.props;
+    const { initApp, fetchNotebooks } = this.props;
     initApp();
+    fetchNotebooks();
   }
 
   render() {
@@ -28,7 +30,6 @@ class App extends React.Component {
           <Route path="/notebook/:notebookId" component={Notebook} />
           <Route component={NotFoundPage} />
         </Switch>
-        {/* TODO: Render a list of notebooks */}
       </>
     );
   }
@@ -41,4 +42,5 @@ App.propTypes = {
 
 export default connect(_ => _, {
   initApp: initializeApp,
+  fetchNotebooks: getNotebooks,
 })(hot(module)(App));

@@ -44,5 +44,8 @@
     "jquery": true,
     "jest": true
   },
-  "globals": {}
+  "globals": {},
+  "rules": {
+    "import/prefer-default-export": "warn"
+  }
 }
