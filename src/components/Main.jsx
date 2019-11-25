@@ -1,14 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getNotebooks } from '~/dux/notebooks/actions.js';
+import { connect } from 'react-redux-immutable';
+import map from "lodash/fp/map";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const Main = ({ onBtnClick }) => (
-  <>
-    <h1>Apache Zeppelin webapp in React</h1>
-    <button onClick={onBtnClick}>Trigger action</button>
-  </>
-);
+import { getNotebookListSelector } from '~/dux/notebooks/selectors';
 
-export default connect(_ => _, {
-  onBtnClick: getNotebooks,
-})(Main);
+const StyledLink = styled(Link)`
+  display: block;
+`;
+
+const Main = ({ notebookList }) => {
+  return (
+    <>
+      <h1>Apache Zeppelin webapp in React</h1>
+      <div>
+        {map(({ name, id }) =>
+          <StyledLink to={`/notebook/${id}`}>{name}</StyledLink>
+          , notebookList)}
+      </div>
+    </>
+  );
+};
+
+export default connect((state) => ({
+  notebookList: getNotebookListSelector(state),
+}), {})(Main);
