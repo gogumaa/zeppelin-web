@@ -10,6 +10,7 @@ export default {
     // To support react-hot-loader
     alias: {
       '~': path.resolve(__dirname, './src'),
+      '~images': path.resolve(__dirname, './images'),
       'react-dom': '@hot-loader/react-dom',
     },
   },

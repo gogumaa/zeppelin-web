@@ -1,7 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { initializeApp } from '~/dux/websocket/actions';
@@ -9,6 +11,7 @@ import { getNotebooks } from '~/dux/notebooks/actions';
 import Main from './Main';
 import Notebook from './Notebook';
 import NotFoundPage from './NotFoundPage';
+import GlobarNavbar from './GlobarNavbar';
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,6 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <>
+        <GlobarNavbar />
         <Switch>
           <Route exact path="/" component={Main} />
           {/* < Route path="/notebookRepos" component={} /> */}
