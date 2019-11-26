@@ -7,7 +7,7 @@ import ZeppelinLogo from '~images/icons/zeppelin_svg_logo.svg';
 const StyledLogo = styled.img`
   height: 33px;
   width: 53px;
-  margin: 0 10px 0;
+  margin: 2px 10px 0;
 `;
 const StyledNavbar = styled(Navbar)`
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.06);
@@ -41,22 +41,20 @@ const StyledForm = styled(Form)`
   }
 `;
 const GlobalNavbar = () => (
-  <div>
-    <StyledNavbar variant="light">
-      <StyledNavBrand>
-        <Link to="/">
-          <StyledLogo src={ZeppelinLogo} />
-        </Link>
-        <span>Zeppelin</span>
-      </StyledNavBrand>
-      {/*<Nav className="mr-auto">*/}
-        {/*<Nav.Link href="#home">Home</Nav.Link>*/}
-      {/*</Nav>*/}
-      <StyledForm inline>
-        <FormControl type="text" placeholder="🔍 Search" className="mr-sm-2" />
-      </StyledForm>
-    </StyledNavbar>
-  </div>
+  <StyledNavbar>
+    <StyledNavBrand>
+      <Link to="/">
+        <StyledLogo src={ZeppelinLogo} />
+      </Link>
+      <span>Zeppelin</span>
+    </StyledNavBrand>
+    {/*<Nav className="mr-auto">*/}
+      {/*<Nav.Link href="#home">Home</Nav.Link>*/}
+    {/*</Nav>*/}
+    <StyledForm inline>
+      <FormControl type="text" placeholder="🔍 Search" className="mr-sm-2" />
+    </StyledForm>
+  </StyledNavbar>
 );
 
 export default GlobalNavbar;

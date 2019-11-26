@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import DirectoryNamedWebpackPlugin from 'directory-named-webpack-plugin';
 import path from 'path';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 
@@ -13,6 +14,9 @@ export default {
       '~images': path.resolve(__dirname, './images'),
       'react-dom': '@hot-loader/react-dom',
     },
+    plugins: [
+      new DirectoryNamedWebpackPlugin(true),
+    ],
   },
   devtool: 'cheap-module-eval-source-map', // more info:https://webpack.js.org/guides/development/#using-source-maps and https://webpack.js.org/configuration/devtool/
   entry: [
