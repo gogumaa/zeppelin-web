@@ -12,19 +12,27 @@ const Container = styled.div`
   border-radius: 3px;
   box-shadow: none;
   padding: 10px 24px;
-  margin-top: 5px; 
+  margin-top: 5px;
 `;
 
+const LINE_HEIGHT = 18;
+const PADDING = 50;
 // const INITIAL_EDITOR_MODE = "text"; // default
 const Paragraph = ({
   editorText,
   paragraphId,
   lineNumbers,
   editorLanguage,
-}) => (
-  <Container>
-    <MonacoEditor
-        width="100%"
+}) => {
+  // todo - find better logic to set editor height
+  const height = ((editorText.split('\n').length) * LINE_HEIGHT) + PADDING;
+  return (
+    <Container>
+      <MonacoEditor
+        automaticLayout
+        height={height}
+        // width="100%"
+        // height="500"
         language={editorLanguage}
         value={editorText}
         options={{
@@ -33,8 +41,9 @@ const Paragraph = ({
         onChange={arg => console.warn({arg})}
         // editorDidMount={::this.editorDidMount}
       />
-  </Container>
-);
+    </Container>
+  );
+};
 
 Paragraph.propTypes = {
   editorText: PropTypes.string,
