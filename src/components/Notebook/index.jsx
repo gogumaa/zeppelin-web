@@ -35,7 +35,7 @@ class Notebook extends React.Component {
       <NotebookContainer>
         <Navbar />
         <ParagraphContainer>
-          {map(paragraphId => <Paragraph paragraphId={paragraphId} />, paragraphIdList)}
+          {map(paragraphId => <Paragraph paragraphId={paragraphId} key={paragraphId} />, paragraphIdList)}
         </ParagraphContainer>
       </NotebookContainer>
     )
