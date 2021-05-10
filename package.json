@@ -40,7 +40,7 @@
     "functional-immutable": "1.0.1",
     "history": "4.9.0",
     "immutable": "4.0.0-rc.12",
-    "lodash": "4.17.14",
+    "lodash": "4.17.21",
     "monaco-editor": "0.17.1",
     "object-assign": "4.1.1",
     "prop-types": "15.7.2",
